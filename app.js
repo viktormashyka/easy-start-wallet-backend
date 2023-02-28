@@ -18,7 +18,7 @@ app.use(logger(formatsLogger));
 // app.use(logger("dev")) //! нужно для деплоя (НЕ УДАЛЯТЬ)
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public')); //! Чтобы Express мог раздавать статические файлы из папки "/public"
+app.use(express.static('public'));
 
 //!++++++++++++++++++++++++++ static ++++++++++++++++++++++++++++++
 app.use('/public', express.static('public'));
