@@ -1,7 +1,6 @@
 const multer = require("multer");
 const path = require("path");
 
-
 //------------------------------------------------------
 //! Путь к временной папке tmp
 const tempDir = path.join(__dirname, "../", "tmp");
