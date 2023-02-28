@@ -3,7 +3,6 @@ const Joi = require("joi");
 
 const { handleSchemaValidationErrors } = require("../helpers");
 
-
 //-----------------------------------------------------------------------------
 const transactionsType = ["income", "expenses"];
 
@@ -23,7 +22,6 @@ const transactionsCategory = [
     "Salary",
     "Add.Income"
 ];
-
 
 const transactionsSchema = Schema({
     transactionsType: {
@@ -59,10 +57,8 @@ const transactionsSchema = Schema({
     },
 }, { versionKey: false, timestamps: true });
 
-
 //! Правильный код ошибки transactionsSchema
 transactionsSchema.post("save", handleSchemaValidationErrors)
-
 
 //* ++++++++++++++++++++++ Схемы ВАЛИДАЦИИ Joi +++++++++++++++++++++++++
 const transactionJoiSchemaPost = Joi.object({
@@ -78,25 +74,13 @@ const transactionJoiSchemaPost = Joi.object({
     description: Joi.string()
         .required(),
 });
-
-//--------------------------------------------------------------------
-const transactionJoiSchemaPatch = Joi.object({
-    transactionsType: Joi.string()
-        .valid(...transactionsType)
-        .required(),
-});
-
 //* _______________________ Схемы ВАЛИДАЦИИ Joi _______________________
-
 
 //? Создаем МОДЕЛЬ:
 const Transaction = model("transaction", transactionsSchema);
 
-
-
 module.exports = {
     Transaction,
     transactionJoiSchemaPost,
-    transactionJoiSchemaPatch,
 };
 
