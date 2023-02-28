@@ -21,6 +21,6 @@ const currentDate = moment().format("hh:mm:ss DD-MM-YYYY");
     console.log('---------------------------------------'.yellow);
   } catch (error) {
     console.log(error.message);
-    process.exit(1); //? закрыть все неиспользуемые процессы
+    process.exit(1);
   }
 })();
