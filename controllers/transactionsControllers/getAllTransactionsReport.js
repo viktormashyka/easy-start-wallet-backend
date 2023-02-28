@@ -1,8 +1,8 @@
 const { Transaction } = require('../../models');
 const { User } = require('../../models');
 
+const { Unauthorized } = require('http-errors');
 
-//-----------------------------------------------------------------------------
 const getAllTransactionsReport = async (req, res) => {
   const { month: theMonth = 1, year: theYear = 2023 } = req.query;
 
@@ -16,7 +16,7 @@ const getAllTransactionsReport = async (req, res) => {
   const { balance } = user;
 
   const transactions = await Transaction.find({ owner: userId })
-    .sort({ sum: 1 }) //! сортировка по полю "date"
+    .sort({ sum: -1 }) //! сортировка по полю "date"
     .select({ owner: 0, updatedAt: 0 }); //! не показывать эти поля
 
   const filterTransactions = transactions.filter(transaction => {

@@ -90,7 +90,7 @@ const transactionJoiSchemaPatch = Joi.object({
 
 
 //? Создаем МОДЕЛЬ:
-const Transaction = model("transaction", transactionsSchema); //! DB_HOST
+const Transaction = model("transaction", transactionsSchema);
 
 
 
