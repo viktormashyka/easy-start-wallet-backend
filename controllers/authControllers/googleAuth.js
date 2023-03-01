@@ -1,6 +1,5 @@
 const { User } = require('../../models');
 const jwt = require('jsonwebtoken');
-
 const { JWT_SECRET, FRONTEND_URL } = process.env;
 
 const googleAuth = async (req, res) => {
@@ -16,5 +15,4 @@ const googleAuth = async (req, res) => {
   await user.setPassword(user.password);
   await user.save();
 };
-
 module.exports = googleAuth;

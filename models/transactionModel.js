@@ -1,11 +1,7 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-
 const { handleSchemaValidationErrors } = require("../helpers");
-
-//-----------------------------------------------------------------------------
 const transactionsType = ["income", "expenses"];
-
 const transactionsCategory = [
     "Transport",
     "Products",
@@ -33,10 +29,6 @@ const transactionsSchema = Schema({
         type: String,
         required: [true, 'Set transactions date'],
     },
-    dateFilter: {
-        type: String,
-        default: ""
-    },
     description: {
         type: String,
         default: "",
@@ -57,10 +49,8 @@ const transactionsSchema = Schema({
     },
 }, { versionKey: false, timestamps: true });
 
-//! Правильный код ошибки transactionsSchema
 transactionsSchema.post("save", handleSchemaValidationErrors)
 
-//* ++++++++++++++++++++++ Схемы ВАЛИДАЦИИ Joi +++++++++++++++++++++++++
 const transactionJoiSchemaPost = Joi.object({
     transactionsType: Joi.string()
         .valid(...transactionsType)
@@ -74,9 +64,7 @@ const transactionJoiSchemaPost = Joi.object({
     description: Joi.string()
         .required(),
 });
-//* _______________________ Схемы ВАЛИДАЦИИ Joi _______________________
 
-//? Создаем МОДЕЛЬ:
 const Transaction = model("transaction", transactionsSchema);
 
 module.exports = {

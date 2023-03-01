@@ -1,22 +1,17 @@
 const express = require('express');
 const router = express.Router();
-
 const {
   validation,
   controllerWrapper,
   isValidId,
   authMiddleware,
 } = require('../../middlewares');
-
 const { transactionsControllers: ctrl } = require('../../controllers');
-
 const {
   transactionJoiSchemaPost,
 } = require('../../models/transactionModel.js');
-
 const validateMiddlewarePost = validation(transactionJoiSchemaPost);
 
-//-----------------------------------------------------------------------------
 //! 1. Получение ВСЕХ ТРАНЗАКЦИЙ ПОЛЬЗОВАТЕЛЯ
 router.get('/', authMiddleware, controllerWrapper(ctrl.getAllTransactions));
 
