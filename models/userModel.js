@@ -1,11 +1,7 @@
 const { Schema, model } = require('mongoose');
 const Joi = require('joi');
-
 const { handleSchemaValidationErrors } = require('../helpers');
-
 const bcrypt = require('bcryptjs');
-
-//-----------------------------------------------------------------------------
 const emailRegexp = /^[\w.]+@[\w]+.[\w]+$/;
 
 const userSchema = Schema(
@@ -49,25 +45,18 @@ const userSchema = Schema(
   { versionKey: false, timestamps: true }
 );
 
-//!  Хеширование и засока password с помошью bcryptjs
 userSchema.methods.setPassword = function (password) {
   this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 };
 
-//!  Сравнение паролей
 userSchema.methods.comparePassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-//! Правильный код ошибки contactSchema
 userSchema.post('save', handleSchemaValidationErrors);
-
-//* ++++++++++++++++++++++ Схемы ВАЛИДАЦИИ Joi +++++++++++++++++++++++++
-const subscriptionList = ['starter', 'pro', 'business'];
 
 const registerJoiSchema = Joi.object({
   name: Joi.string().min(2),
-  // .required(),
   email: Joi.string()
     .pattern(emailRegexp)
     .email({
@@ -76,11 +65,8 @@ const registerJoiSchema = Joi.object({
     })
     .required(),
   password: Joi.string().min(3).required(),
-  subscription: Joi.string()
-    .valueOf(...subscriptionList)
-    .optional(),
 });
-//--------------------------------------------------------------------
+
 const loginJoiSchema = Joi.object({
   email: Joi.string()
     .pattern(emailRegexp)
@@ -91,31 +77,11 @@ const loginJoiSchema = Joi.object({
     .required(),
   password: Joi.string().min(3).required(),
 });
-//--------------------------------------------------------------------
-const changeSubscriptionJoiSchema = Joi.object({
-  subscription: Joi.string()
-    .valueOf(...subscriptionList)
-    .required(),
-});
-//--------------------------------------------------------------------
-const verifyEmailJoiSchema = Joi.object({
-  email: Joi.string()
-    .pattern(emailRegexp)
-    .email({
-      minDomainSegments: 2,
-      tlds: { allow: ['com', 'net', 'ua', 'org'] },
-    })
-    .required(),
-});
-//* _______________________ Схемы ВАЛИДАЦИИ Joi _______________________
 
-//? Создаем МОДЕЛЬ:
 const User = model('user', userSchema);
 
 module.exports = {
   User,
   registerJoiSchema,
   loginJoiSchema,
-  changeSubscriptionJoiSchema,
-  verifyEmailJoiSchema,
 };

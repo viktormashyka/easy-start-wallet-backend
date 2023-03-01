@@ -6,7 +6,6 @@ async function resizeXandYbyJimp(tempUpload, x, y) {
         .resize(x, y)
         .writeAsync(tempUpload);
 };
-
 module.exports = {
     resizeXandYbyJimp,
 };

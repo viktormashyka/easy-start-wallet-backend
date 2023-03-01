@@ -5,11 +5,8 @@ require('dotenv').config();
 require('colors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-
 const authRouter = require('./routes/api/authRouter.js');
 const transactionsRouter = require('./routes/api/transactionsRouter.js');
-
-//----------------------------------------------------------------
 const app = express();
 
 //! +++++++++++++++++++++++ Нужно для локальной работы (НЕ УДАЛЯТЬ) +++++++++++++++++++++++

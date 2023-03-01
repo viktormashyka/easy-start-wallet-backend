@@ -7,5 +7,4 @@ const handleSchemaValidationErrors = (error, data, next) => {
     };
     next();
 };
-
 module.exports = handleSchemaValidationErrors;

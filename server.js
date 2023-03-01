@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
-mongoose.set('strictQuery', false); //!!!!!
+mongoose.set('strictQuery', false);
 const moment = require('moment');
-
 const app = require('./app');
-
-
-// ----------------------------------------------------------------
 const { DB_HOST, PORT = 3033 } = process.env;
 const currentDate = moment().format("hh:mm:ss DD-MM-YYYY");
-
 
 (async () => {
   try {

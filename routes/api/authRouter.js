@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const {
   validation,
   controllerWrapper,
@@ -9,19 +8,15 @@ const {
   resizeXandYbyJimpMiddleware,
   passport,
 } = require('../../middlewares');
-
 const { authControllers: ctrl } = require('../../controllers');
-
 const {
   registerJoiSchema,
   loginJoiSchema,
 } = require('../../models/userModel.js');
-
 const validateMiddlewareRegister = validation(registerJoiSchema);
 const validateMiddlewarelogin = validation(loginJoiSchema);
 
 
-//-----------------------------------------------------------------------------
 //! 0. Google
 router.get(
   '/google',
