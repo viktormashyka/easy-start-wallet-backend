@@ -12,7 +12,6 @@ const userSchema = Schema(
   {
     name: {
       type: String,
-      // required: [true, 'Name is required'],
       default: 'User',
     },
     email: {
@@ -38,7 +37,6 @@ const userSchema = Schema(
     },
     avatarURL: {
       type: String,
-      // required: [true, 'Avatar is required'],
     },
     verify: {
       type: Boolean,
@@ -46,7 +44,6 @@ const userSchema = Schema(
     },
     verificationToken: {
       type: String,
-      // required: [true, 'Verify token is required'],
     },
   },
   { versionKey: false, timestamps: true }

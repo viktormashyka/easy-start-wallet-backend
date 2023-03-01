@@ -15,20 +15,14 @@ const { authControllers: ctrl } = require('../../controllers');
 const {
   registerJoiSchema,
   loginJoiSchema,
-  changeSubscriptionJoiSchema,
-  verifyEmailJoiSchema,
 } = require('../../models/userModel.js');
 
 const validateMiddlewareRegister = validation(registerJoiSchema);
 const validateMiddlewarelogin = validation(loginJoiSchema);
-const validateMiddlewareChangeSubscription = validation(
-  changeSubscriptionJoiSchema
-);
-const validateMiddlewareVerifyEmail = validation(verifyEmailJoiSchema);
+
 
 //-----------------------------------------------------------------------------
-//! Google
-
+//! 0. Google
 router.get(
   '/google',
   passport.authenticate('google', { scope: ['email', 'profile'] })
@@ -38,6 +32,7 @@ router.get(
   passport.authenticate('google', { session: false }),
   controllerWrapper(ctrl.googleAuth)
 );
+
 //! 1. Регистрация
 router.post(
   '/signup',
@@ -62,16 +57,7 @@ router.get(
   controllerWrapper(ctrl.getCurrentController)
 );
 
-//! 5. Обновление подписки (subscription) пользователя
-router.patch(
-  '/',
-  authMiddleware,
-  validateMiddlewareChangeSubscription,
-  controllerWrapper(ctrl.updatePatchUserSubscription)
-); //! 2-вариант
-
-//! 6. Обновление аватарки (avatarURL) пользователя
-//!    PATCH -- > api/users/avatars
+//! 5. Обновление аватарки (avatarURL) пользователя
 router.patch(
   '/avatars',
   authMiddleware,
@@ -80,25 +66,13 @@ router.patch(
   controllerWrapper(ctrl.updateAvatar)
 );
 
-//! 7. Верификация email пользователя
-//!    GET -- > api/users/verify/:verificationToken
-router.get('/verify/:verificationToken', controllerWrapper(ctrl.verifyEmail));
-
-//! 8. Добавление повторной отправки email пользователю с ссылкой для верификации
-//!    POST -- > api/users/verify
-router.post(
-  '/verify',
-  validateMiddlewareVerifyEmail,
-  controllerWrapper(ctrl.resendVerifyEmail)
-);
-
-//! 9. ПОЛУЧИТЬ баланс пользователя
+//! 6. ПОЛУЧИТЬ баланс пользователя
 router.get('/balance', authMiddleware, controllerWrapper(ctrl.getBalance));
 
-//! 10. ИЗМЕНИТЬ баланс пользователя
+//! 7. ИЗМЕНИТЬ баланс пользователя
 router.patch('/balance', authMiddleware, controllerWrapper(ctrl.updateBalance));
 
-//! 11. ИЗМЕНИТЬ статус  пользователя --> user.isNewUser: false (если balanceNew === 0)
+//! 8. ИЗМЕНИТЬ статус  пользователя --> user.isNewUser: false (если balanceNew === 0)
 router.patch(
   '/isnotnewuser',
   authMiddleware,

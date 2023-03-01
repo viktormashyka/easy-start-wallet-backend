@@ -25,12 +25,10 @@ const authMiddleware = async (req, res, next) => {
 
         //! Проверка валидности токена
         if (!user) {
-            console.log("authMiddleware-->user(jwt):".bgYellow.magenta, user); //!
             throw new Unauthorized("Not authorized. Invalid token");
         }
         //! Весь объект user (2-вариант)
         const { id } = jwt.verify(token, JWT_SECRET);
-        console.log("authMiddleware-->id:".bgYellow.blue, id); //!
         user = await User.findById(id);
 
         //! Проверка user и валидности его токена
