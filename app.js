@@ -12,10 +12,12 @@ const transactionsRouter = require('./routes/api/transactionsRouter.js');
 //----------------------------------------------------------------
 const app = express();
 
-const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
-app.use(logger(formatsLogger));
+//! +++++++++++++++++++++++ Нужно для локальной работы (НЕ УДАЛЯТЬ) +++++++++++++++++++++++
+// const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
+// app.use(logger(formatsLogger));
+//! ________________________ Нужно для локальной работы (НЕ УДАЛЯТЬ) ________________________
 
-// app.use(logger("dev")) //! нужно для деплоя (НЕ УДАЛЯТЬ)
+app.use(logger("dev")) //! нужно для деплоя (НЕ УДАЛЯТЬ)
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
