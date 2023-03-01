@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "cross-env NODE_ENV=production node ./server.js",
+    "start": "node server.js",
+    "start:prod": "cross-env NODE_ENV=production node ./server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
-    "start:deploy": "node server.js",
     "build": "mkdir dist && node server.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
