@@ -13,20 +13,22 @@ const googleParams = {
 
 const googleCallback = async (accessToken, refreshToken, profile, done) => {
   try {
-    const { emails } = profile;
+    const { emails, photos } = profile;
     const email = emails[0].value;
+    const avatarURL = photos[0].value;
     console.log(profile);
     const user = await User.findOne({ email });
     if (user) {
       return done(null, user); //req.user=user
     }
     const password = nanoid(10);
-    const newUser = await User.create({ email, password });
+    const newUser = await User.create({ email, password, avatarURL });
     done(null, newUser);
   } catch (error) {
     done(error, false);
   }
 };
+
 const googleStrategy = new Strategy(googleParams, googleCallback);
 passport.use('google', googleStrategy);
 
