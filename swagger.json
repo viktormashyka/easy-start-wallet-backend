@@ -9,12 +9,8 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "servers": [
     {
       "url": "https://easy-start-wallet-back.onrender.com"
@@ -33,9 +29,7 @@
   "paths": {
     "/api/users/signup": {
       "post": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "User registration",
         "parameters": [],
         "requestBody": {
@@ -67,9 +61,7 @@
     },
     "/api/users/login": {
       "post": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "User login",
         "parameters": [],
         "requestBody": {
@@ -101,19 +93,9 @@
     },
     "/api/users/logout": {
       "get": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "User logout",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "security": [
           {
             "Bearer": []
@@ -137,19 +119,9 @@
     },
     "/api/users/current": {
       "get": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Get information about the current user",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "security": [
           {
             "Bearer": []
@@ -175,68 +147,11 @@
         }
       }
     },
-    "/api/users": {
-      "patch": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Updating a user's subscription",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "security": [
-          {
-            "Bearer": []
-          }
-        ],
-        "requestBody": {
-          "description": "Registration's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsersRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {}
-          },
-          "400": {
-            "description": "Subscription update failed.",
-            "content": {}
-          },
-          "401": {
-            "description": "Missing header with authorization token.",
-            "content": {}
-          }
-        }
-      }
-    },
     "/api/users/avatars": {
       "patch": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "User avatar update",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "security": [
           {
             "Bearer": []
@@ -269,78 +184,11 @@
         }
       }
     },
-    "/api/users/verify/:verificationToken": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "summary": "User email verification",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "verificationToken",
-            "description": "Verification token",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {}
-          },
-          "401": {
-            "description": "Missing header with authorization token.",
-            "content": {}
-          }
-        }
-      }
-    },
-    "/api/users/verify": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Adding a resend email to a user with a verification link",
-        "parameters": [],
-        "requestBody": {
-          "description": "Registration's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VerifyRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Successful operation",
-            "content": {}
-          },
-          "400": {
-            "description": "Validation error",
-            "content": {}
-          }
-        }
-      }
-    },
     "/api/users/balance": {
       "get": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Get user balance",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "security": [
           {
             "Bearer": []
@@ -358,19 +206,9 @@
         }
       },
       "patch": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Change user balance",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "security": [
           {
             "Bearer": []
@@ -411,19 +249,9 @@
     },
     "/api/users/isnotnewuser": {
       "patch": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Change user status",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "security": [
           {
             "Bearer": []
@@ -458,19 +286,9 @@
     },
     "/api/transactions": {
       "get": {
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "summary": "Get transactions by user",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "security": [
           {
             "Bearer": []
@@ -478,14 +296,7 @@
         ],
         "requestBody": {
           "description": "Registration's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegistrationRequest"
-              }
-            }
-          }
+          "content": {}
         },
         "responses": {
           "201": {
@@ -503,19 +314,9 @@
         }
       },
       "post": {
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "summary": "Add a transaction",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "security": [
           {
             "Bearer": []
@@ -556,18 +357,9 @@
     },
     "/api/transactions/:transactionId": {
       "delete": {
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "summary": "Remove a transaction",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          },
           {
             "in": "path",
             "name": "transactionId",
@@ -599,18 +391,9 @@
     },
     "/api/transactions/report": {
       "get": {
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "summary": "Get all transactions by user",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "The token issued to the current user.",
-            "required": true,
-            "type": "string"
-          },
           {
             "in": "query",
             "name": "month",
@@ -663,10 +446,7 @@
     "schemas": {
       "RegistrationRequest": {
         "type": "object",
-        "required": [
-          "email",
-          "password"
-        ],
+        "required": ["email", "password"],
         "properties": {
           "name": {
             "type": "string",
@@ -687,10 +467,7 @@
       },
       "LoginRequest": {
         "type": "object",
-        "required": [
-          "email",
-          "password"
-        ],
+        "required": ["email", "password"],
         "properties": {
           "email": {
             "type": "string",
@@ -704,26 +481,9 @@
           }
         }
       },
-      "UsersRequest": {
-        "type": "object",
-        "required": [
-          "email",
-          "password"
-        ],
-        "properties": {
-          "subscription": {
-            "type": "string",
-            "description": "User's subscription",
-            "example": "subscription"
-          }
-        }
-      },
       "AvatarsRequest": {
         "type": "object",
-        "required": [
-          "email",
-          "password"
-        ],
+        "required": ["email", "password"],
         "properties": {
           "file": {
             "type": "string",
@@ -732,24 +492,9 @@
           }
         }
       },
-      "VerifyRequest": {
-        "type": "object",
-        "required": [
-          "email"
-        ],
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email"
-          }
-        }
-      },
       "BalanceRequest": {
         "type": "object",
-        "required": [
-          "balance"
-        ],
+        "required": ["balance"],
         "properties": {
           "balance": {
             "type": "number",
@@ -760,9 +505,7 @@
       },
       "IsnotnewuserRequest": {
         "type": "object",
-        "required": [
-          "isNotNewUser"
-        ],
+        "required": ["isNotNewUser"],
         "properties": {
           "isNotNewUser": {
             "type": "boolean",
@@ -773,9 +516,7 @@
       },
       "TransactionsRequest": {
         "type": "object",
-        "required": [
-          "date"
-        ],
+        "required": ["date"],
         "properties": {
           "date": {
             "type": "string",
